@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "AProfile Prankster",
+  "version": "1.0",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["https://*.facebook.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

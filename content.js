@@ -10,7 +10,7 @@
         CUSTOM_EDIT_CLASS: "my-custom-visual-edit-btn",
         CUSTOM_EDIT_STYLE_ID: "my-custom-edit-style",
         FAKE_BUTTONS_CLASS: "my-fake-buttons",
-        HIGHLIGHTS_BORDER_RADIUS: "6px" 
+        HIGHLIGHTS_BORDER_RADIUS: "6px"
     };
 
     // The raw HTML for the fake action buttons (Message / Add Friend etc.)
@@ -30,6 +30,51 @@
     const COMPOSER_BOX_HTML = `<div data-prankster-composer="true" style="margin-bottom: 16px;"><div class="x1yztbdb"><div class="html-div xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x78zum5 x1n2onr6 xh8yej3"><div style="border-radius:max(0px, min(var(--card-corner-radius), calc((100vw - 4px - 100%) * 9999))) / var(--card-corner-radius)" class="x1n2onr6 x1ja2u2z x1jx94hy xw5cjc7 x1dmpuos x1vsv7so xau1kf4 x9f619 xh8yej3 x6ikm8r x10wlt62 xquyuld"><div class="x1qjc9v5 x78zum5 xdt5ytf x1a8lsjc xv54qhq xf7dkkf xz9dl7a"><div class="x1cy8zhl x78zum5 x1iyjqo2 xh8yej3"><a aria-label="Timeline" class="x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s x3ct3a4 xdj266r xat24cr x1lziwak x2lwn1j xeuugli xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1fmog5m xu25z0z x140muxe xo1y3bh x1q0g3np x87ps6o x1lku1pv x1a2a7pz x78zum5 x1xegmmw" href="#" role="link" tabindex="0"><div class="html-div xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl"><div class="x1rg5ohu x1n2onr6 x3ajldb x1ja2u2z"><svg aria-hidden="true" class="x3ajldb" data-visualcompletion="ignore-dynamic" role="none" style="height:40px;width:40px"><mask id="_R_pcqil9l5bb6ismj5ilipam_"><circle cx="20" cy="20" fill="white" r="20"></circle></mask><g mask="url(#_R_pcqil9l5bb6ismj5ilipam_)"><image class="prankster-composer-avatar" style="height:40px;width:40px" x="0" y="0" height="100%" preserveAspectRatio="xMidYMid slice" width="100%" xlink:href=""></image><circle class="xbh8q5q x1pwv2dq xvlca1e" cx="20" cy="20" r="20"></circle></g></svg></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1iwo8zk x1033uif x179ill4 x1b60jn0" role="none" data-visualcompletion="ignore"></div></a><div class="x1i10hfl x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x16tdsg8 x1hl2dhg xggy1nq x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xmjcpbm x12ol6y4 x180vkcf x1khw62d x709u02 x78zum5 x1q0g3np x1iyjqo2 x1nhvcw1 x1n2onr6 xt7dq6l x1ba4aug x1y1aw1k xpdmqnj xwib8y2 x1g0dm76" role="button" tabindex="0"><div class="xi81zsa x1lkfr7t xkjl1po x1mzt3pk xh8yej3 x13faqbe"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6" style="-webkit-box-orient:vertical;-webkit-line-clamp:2;display:-webkit-box">What's on your mind?</span></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore"></div></div></div><div class="xqmpxtq x13fuv20 x178xt8z x78zum5 x1a02dak x1vqgdyp x1l1ennw x14vqqas x6ikm8r x10wlt62 x1y1aw1k"><div aria-label="Live video" class="x1i10hfl xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x87ps6o x1lku1pv x1a2a7pz x6s0dn4 x1obq294 x5a5i1n xde0f50 x15x8krk x78zum5 x1r8uery x1iyjqo2 xs83m0k xl56j7k x1pshirs x1y1aw1k xf159sx xwib8y2 xmzvs34" role="button" tabindex="0"><div class="x6s0dn4 x78zum5 xl56j7k x1rfph6h x6ikm8r x10wlt62"><span class="x3nfvp2 x1c4vz4f x2lah0s x1xegmmw"><img height="24" width="24" class="xz74otr x15mokao x1ga7v0g x16uus16 xbiv7yw" alt="" referrerpolicy="origin-when-cross-origin" src="https://z-p3-static.xx.fbcdn.net/rsrc.php/yE/r/f0XMdTi7eQy.webp?_nc_eui2=AeGs2N8T41HpLPwo2xYJyfurnS7om8ylOkSdLuibzKU6REVu0Uu7vz-CLJsB0GtpW-nWFl7EyMN5xvSn5zXvpxx2"></span><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xi81zsa" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Live video</span></span></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore"></div></div><input accept="image/*,image/heif,image/heic,video/*,video/mp4,video/x-m4v,video/x-matroska,.mkv" class="x1s85apg" multiple="" type="file"><div aria-label="Photo/video" class="x1i10hfl xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x87ps6o x1lku1pv x1a2a7pz x6s0dn4 x1obq294 x5a5i1n xde0f50 x15x8krk x78zum5 x1r8uery x1iyjqo2 xs83m0k xl56j7k x1pshirs x1y1aw1k xf159sx xwib8y2 xmzvs34" role="button" tabindex="0"><div class="x6s0dn4 x78zum5 xl56j7k x1rfph6h x6ikm8r x10wlt62"><span class="x3nfvp2 x1c4vz4f x2lah0s x1xegmmw"><img height="24" width="24" class="xz74otr x15mokao x1ga7v0g x16uus16 xbiv7yw" alt="" referrerpolicy="origin-when-cross-origin" src="https://z-p3-static.xx.fbcdn.net/rsrc.php/yX/r/8_VnccIZfRa.webp?_nc_eui2=AeG2YlsAn6yuCAsB-TFdhgav9CYClD12-rT0JgKUPXb6tHEDnAdsaeRILiCzgfYZgcU1a8sgszVq-lU-KP-LcH8J"></span><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xi81zsa" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Photo/video</span></span></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore"></div></div><div aria-label="Life update" class="x1i10hfl xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x87ps6o x1lku1pv x1a2a7pz x6s0dn4 x1obq294 x5a5i1n xde0f50 x15x8krk x78zum5 x1r8uery x1iyjqo2 xs83m0k xl56j7k x1pshirs x1y1aw1k xf159sx xwib8y2 xmzvs34" role="button" tabindex="0"><div class="x6s0dn4 x78zum5 xl56j7k x1rfph6h x6ikm8r x10wlt62"><span class="x3nfvp2 x1c4vz4f x2lah0s x1xegmmw"><img height="24" width="24" class="xz74otr x15mokao x1ga7v0g x16uus16 xbiv7yw" alt="" referrerpolicy="origin-when-cross-origin" src="https://z-p3-static.xx.fbcdn.net/rsrc.php/yd/r/R9lJq0bdBk6.webp?_nc_eui2=AeF_xPC1MGmF8JkkiG9y1flUCtL4N2IW0WkK0vg3YhbRaXW7fiKi63Ji7Y1ejxVK3k0DXEFLebwtl1VvkPw4_E82"></span><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xi81zsa" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Life update</span></span></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore"></div></div></div></div></div></div></div></div></div>`;
 
     const RICH_POSTS_HEADER_HTML = `<div class="x1yztbdb"><div class="html-div xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x78zum5 x1n2onr6 xh8yej3"><div style="border-radius:max(0px, min(var(--card-corner-radius), calc((100vw - 4px - 100%) * 9999))) / var(--card-corner-radius)" class="x1n2onr6 x1ja2u2z x1jx94hy xw5cjc7 x1dmpuos x1vsv7so xau1kf4 x9f619 xh8yej3 x6ikm8r x10wlt62 xquyuld"><div class="x9f619 x1ja2u2z x78zum5 x2lah0s x1n2onr6 x1qughib x1qjc9v5 xozqiw3 x1q0g3np xv54qhq xf7dkkf x18d9i69 xexx8yu x1ws5yxj xw01apr x4cne27 xifccgj"><div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli xamitd3 x1icxu4v x25sj25 x10b6aqq x1yrsyyn"><div class="x78zum5 xdt5ytf x4cne27 xifccgj"><div class="xzueoph x1k70j0n"><h2 dir="auto" class="html-h2 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x1vvkbs x1heor9g x1qlqyl8 x1pd3egz x1a2a7pz x193iq5w xeuugli"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xtoi2st x3x7a5m x1603h9y x1u7k74 x1xlr1w8 xzsf02u x1yc453h" dir="auto">Posts</span></h2></div></div></div><div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli xamitd3 x1icxu4v x25sj25 x10b6aqq x1yrsyyn"><div class="x78zum5 xwib8y2 x1y1aw1k"><div><div aria-label="Filters" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" role="button" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 x1qhmfi1 x1r1pt67"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" class="x14rh7hd x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" style="--x-color:var(--primary-icon)"><path d="M2.614 5.75H1.75a.75.75 0 0 1 0-1.5h.864a2.501 2.501 0 1 1 0 1.5zM11 8.5c1.12 0 2.067.736 2.386 1.75h.864a.75.75 0 0 1 0 1.5h-.864A2.501 2.501 0 1 1 11 8.5zM7.5 11a.75.75 0 0 0-.75-.75h-5a.75.75 0 0 0 0 1.5h5A.75.75 0 0 0 7.5 11zm1.75-6.75a.75.75 0 0 0 0 1.5h5a.75.75 0 0 0 0-1.5h-5z"></path></svg></div><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f x1dem4cn" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Filters</span></span></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore"></div></div></div></div><div><div class="x13fj5qh"><div aria-label="Manage posts" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" role="button" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 x1qhmfi1 x1r1pt67"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" class="x14rh7hd x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" style="--x-color:var(--primary-icon)"><path d="M6 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path><path d="M5.85 1.246A1.15 1.15 0 0 1 6.928.5h2.146c.48 0 .909.298 1.077.746l.36.963a1.25 1.25 0 0 0 1.326.801l.888-.11a1.15 1.15 0 0 1 1.1.502l1.06 1.59a1.15 1.15 0 0 1-.021 1.306l-.697.976a1.25 1.25 0 0 0 0 1.453l.697.975c.277.389.286.909.02 1.306l-1.06 1.59a1.15 1.15 0 0 1-1.099.503l-.888-.11a1.25 1.25 0 0 0-1.325.8l-.361.963a1.15 1.15 0 0 1-1.077.746H6.927a1.15 1.15 0 0 1-1.076-.746l-.344-.915a1.25 1.25 0 0 0-1.363-.796l-.833.13c-.45.07-.9-.132-1.146-.517l-1.063-1.661a1.15 1.15 0 0 1 .033-1.288l.684-.959a1.25 1.25 0 0 0-.012-1.47l-.66-.892a1.15 1.15 0 0 1-.056-1.287L2.16 3.362a1.15 1.15 0 0 1 1.156-.534l.828.13a1.25 1.25 0 0 0 1.363-.796l.344-.916zM8 4.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"></path></svg></div><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f x1dem4cn" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Manage posts</span></span></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore"></div></div></div></div></div></div></div></div><div class="x1n2xptk"></div><div role="tablist" class="x9f619 x1ja2u2z x78zum5 x2lah0s x1n2onr6 x1qughib x1qjc9v5 xozqiw3 x1q0g3np xyqm7xq x1ys307a"><div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x193iq5w xeuugli x1r8uery x1iyjqo2 xs83m0k"><a aria-hidden="false" aria-selected="true" class="x1i10hfl x3ct3a4 xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz xjyslct xjbqb8w x18o3ruo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1heor9g x1ypdohk x78zum5 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg x1vjfegm" role="tab" tabindex="0" href="/esemsojib/"><div class="html-div xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x9f619 x78zum5 x2lah0s x1hshjfz x1n2onr6 x1vqgdyp xl56j7k xh8yej3"><div class="html-div xdj266r xat24cr x1lziwak xexx8yu x18d9i69 x1c1uobl x14ju556 xptfeew x1mmqav5"><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" class="x14rh7hd x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" style="--x-color:var(--accent)"><path d="M3 2a1 1 0 0 0 0 2h10a1 1 0 1 0 0-2H3zM2 8a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1z"></path></svg></div><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f x1fey0fg" dir="auto">List view</span><div class="html-div xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x91jh78 xkqq1k2 x1ey2m1c x13np604 xtijo5x x1o0tod x10l6tqk xl8spv7" style="--x-backgroundColor:var(--accent)"></div></div></a></div><div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x193iq5w xeuugli x1r8uery x1iyjqo2 xs83m0k"><a aria-hidden="false" aria-selected="false" class="x1i10hfl x3ct3a4 xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz xjyslct xjbqb8w x18o3ruo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1heor9g x1ypdohk x78zum5 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg x1vjfegm" role="tab" tabindex="0" href="/esemsojib/grid/"><div class="html-div xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x9f619 x78zum5 x2lah0s x1hshjfz x1n2onr6 x1vqgdyp xl56j7k xh8yej3"><div class="html-div xdj266r xat24cr x1lziwak xexx8yu x18d9i69 x1c1uobl x14ju556 xptfeew x1mmqav5"><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" class="x14rh7hd x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" style="--x-color:var(--secondary-icon)"><path d="M2.75 1A1.75 1.75 0 0 0 1 2.75v3c0 .966.784 1.75 1.75 1.75h3A1.75 1.75 0 0 0 7.5 5.75v-3A1.75 1.75 0 0 0 5.75 1h-3zm7.5 0A1.75 1.75 0 0 0 8.5 2.75v3c0 .966.784 1.75 1.75 1.75h3A1.75 1.75 0 0 0 15 5.75v-3A1.75 1.75 0 0 0 13.25 1h-3zm-7.5 7.5A1.75 1.75 0 0 0 1 10.25v3c0 .966.784 1.75 1.75 1.75h3a1.75 1.75 0 0 0 1.75-1.75v-3A1.75 1.75 0 0 0 5.75 8.5h-3zm7.5 0a1.75 1.75 0 0 0-1.75 1.75v3c0 .966.784 1.75 1.75 1.75h3A1.75 1.75 0 0 0 15 13.25v-3a1.75 1.75 0 0 0-1.75-1.75h-3z"></path></svg></div><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xi81zsa" dir="auto">Grid view</span><div class="html-div xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl xholzvs x91jh78 xkqq1k2 x1ey2m1c x13np604 xtijo5x x1o0tod x10l6tqk"></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="border-radius: 6px; inset: 4px 0px;"></div></a></div></div></div></div></div>`;
+
+
+    // The full HTML row for Like, Comment, and Share (Cleaned and tagged to prevent loops)
+ const FAKE_ACTION_BAR_HTML = `
+    <div data-prankster-action-bar="true" class="x9f619 x1ja2u2z x78zum5 x2lah0s x1n2onr6 x1qughib x1qjc9v5 xozqiw3 x1q0g3np xyri2b x1c1uobl xjkvuk6 x1iorvi4 x11lt19s xe9ewy2 x4cne27 xifccgj">
+        <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x193iq5w xeuugli x1r8uery x1iyjqo2 xs83m0k x14vy60q xyiysdx x10b6aqq x1yrsyyn">
+            <div aria-label="Like" class="x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j xeuugli xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg x1ja2u2z x1t137rt x1fmog5m xu25z0z x140muxe xo1y3bh x3nfvp2 x1q0g3np x87ps6o x1lku1pv x1a2a7pz x5ve5x3" role="button" tabindex="0">
+                <div class="x9f619 x1ja2u2z x78zum5 x1n2onr6 x1r8uery x1iyjqo2 xs83m0k xeuugli xl56j7k x6s0dn4 xozqiw3 x1q0g3np xpdmqnj x1g0dm76 x18d9i69 xexx8yu x1lxpwgx x165d6jo x4cne27 xifccgj xn3w4p2 xuxw1ft">
+                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
+                        <span class="x3nfvp2"><i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style="background-image: url(&quot;https://z-p3-static.xx.fbcdn.net/rsrc.php/yd/r/Fv2SXGWpLpB.webp?_nc_eui2=AeHyJPpKVgvMqjhv0DD-R1XDb1SaOyNkmMxvVJo7I2SYzDom7ZT1HK30fr_Tk6xBIoFgE0sRs4SvSGMFqNIoQzZR&quot;); background-position: 0px -697px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i></span>
+                    </div>
+                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
+                        <span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xi81zsa" dir="auto"><span>Like</span></span>
+                    </div>
+                </div>
+                <div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="border-radius: 4px; inset: 0px;"></div>
+            </div>
+        </div>
+        <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x193iq5w xeuugli x1r8uery x1iyjqo2 xs83m0k x14vy60q xyiysdx x10b6aqq x1yrsyyn">
+            <div aria-label="Leave a comment" class="x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j xeuugli xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1fmog5m xu25z0z x140muxe xo1y3bh x3nfvp2 x1q0g3np x87ps6o x1lku1pv x1a2a7pz" role="button" tabindex="0">
+                <div class="x9f619 x1ja2u2z x78zum5 x1n2onr6 x1r8uery x1iyjqo2 xs83m0k xeuugli xl56j7k x6s0dn4 xozqiw3 x1q0g3np xpdmqnj x1g0dm76 x18d9i69 xexx8yu x1lxpwgx x165d6jo x4cne27 xifccgj xn3w4p2 xuxw1ft">
+                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
+                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" aria-hidden="true" style="background-image: url(&quot;https://z-p3-static.xx.fbcdn.net/rsrc.php/yd/r/Fv2SXGWpLpB.webp?_nc_eui2=AeHyJPpKVgvMqjhv0DD-R1XDb1SaOyNkmMxvVJo7I2SYzDom7ZT1HK30fr_Tk6xBIoFgE0sRs4SvSGMFqNIoQzZR&quot;); background-position: 0px -487px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                    </div>
+                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
+                        <span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xi81zsa" dir="auto">Comment</span>
+                    </div>
+                </div>
+                <div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="border-radius: 4px; inset: 0px;"></div>
+            </div>
+        </div>
+        <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x193iq5w xeuugli x1r8uery x1iyjqo2 xs83m0k x14vy60q xyiysdx x10b6aqq x1yrsyyn">
+            <div aria-label="Send this to friends or post it on your profile." class="x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j xeuugli xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1fmog5m xu25z0z x140muxe xo1y3bh x3nfvp2 x1q0g3np x87ps6o x1lku1pv x1a2a7pz" role="button" tabindex="0">
+                <div class="x9f619 x1ja2u2z x78zum5 x1n2onr6 x1r8uery x1iyjqo2 xs83m0k xeuugli xl56j7k x6s0dn4 xozqiw3 x1q0g3np xpdmqnj x1g0dm76 x18d9i69 xexx8yu x1lxpwgx x165d6jo x4cne27 xifccgj xn3w4p2 xuxw1ft">
+                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
+                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style="background-image: url(&quot;https://z-p3-static.xx.fbcdn.net/rsrc.php/yd/r/Fv2SXGWpLpB.webp?_nc_eui2=AeHyJPpKVgvMqjhv0DD-R1XDb1SaOyNkmMxvVJo7I2SYzDom7ZT1HK30fr_Tk6xBIoFgE0sRs4SvSGMFqNIoQzZR&quot;); background-position: 0px -844px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                    </div>
+                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
+                        <span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xi81zsa" dir="auto">Share</span>
+                    </div>
+                </div>
+                <div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore"></div>
+            </div>
+        </div>
+    </div>`;
 
     // ==========================================
     // MODULE 1: PROFILE PRANKSTER UI INJECTIONS
@@ -93,7 +138,7 @@
         while (container && container.children.length < 2) { container = container.parentElement; }
 
         if (container && !document.querySelector(`.${CONFIG.FAKE_BUTTONS_CLASS}`)) {
-            container.style.display = 'none'; 
+            container.style.display = 'none';
             const wrapper = document.createElement('div');
             wrapper.className = CONFIG.FAKE_BUTTONS_CLASS;
             wrapper.innerHTML = FAKE_BUTTONS_HTML;
@@ -159,7 +204,7 @@
     function injectHighlightsButton() {
         // Collect all potential headers
         const allHeaders = Array.from(document.querySelectorAll("h2, span[dir='auto']"));
-        
+
         // Find the native Highlights header (ignoring any 'a' tags or buttons)
         const nativeHighlightsHeader = allHeaders.find(el => el.textContent.trim() === "Highlights" && el.tagName !== 'A');
 
@@ -169,7 +214,7 @@
             // We just need to attach the button to its existing card box
             // ==========================================
             const cardWrapper = nativeHighlightsHeader.closest('.xquyuld') || nativeHighlightsHeader.closest('[style*="border-radius: max"]');
-            
+
             // If card not found, or if we ALREADY injected our button into this card, stop and do nothing.
             if (!cardWrapper || cardWrapper.querySelector(".my-fake-highlights-btn-wrapper")) return;
 
@@ -178,10 +223,10 @@
 
             const btnWrapper = document.createElement("div");
             btnWrapper.className = "my-fake-highlights-btn-wrapper";
-            btnWrapper.style.padding = "0px 16px 16px 16px"; 
+            btnWrapper.style.padding = "0px 16px 16px 16px";
             btnWrapper.style.width = "100%";
             btnWrapper.style.boxSizing = "border-box";
-            btnWrapper.style.marginTop = "16px"; 
+            btnWrapper.style.marginTop = "16px";
 
             const NORMAL_CLASSES = "x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh";
             const HOVER_CLASSES = "x1ey2m1c xtijo5x x1o0tod x47corl x10l6tqk x13vifvy x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh x1hc1fzr x1mq3mr6 x1wpzbip";
@@ -208,7 +253,7 @@
                 clickableButton.addEventListener('mouseenter', () => overlayDiv.className = HOVER_CLASSES);
                 clickableButton.addEventListener('mouseleave', () => {
                     overlayDiv.className = NORMAL_CLASSES;
-                    clickableButton.style.transform = 'scale(1)'; 
+                    clickableButton.style.transform = 'scale(1)';
                 });
                 clickableButton.addEventListener('mousedown', () => clickableButton.style.transform = 'scale(0.96)');
                 clickableButton.addEventListener('mouseup', () => clickableButton.style.transform = 'scale(1)');
@@ -221,14 +266,14 @@
             // LOGIC B: HIGHLIGHTS HEADER DOES NOT EXIST
             // We inject the empty Fallback Box, and let the script catch it on the next loop
             // ==========================================
-            
+
             // Safety check: Don't inject multiple empty boxes
             if (document.getElementById('my-fake-highlights-card-wrapper')) return;
 
             // Find a nearby anchor header to place our new box underneath
             const targetTitles = ["Personal details", "Intro", "Photos", "Friends", "About"];
             let anchorHeader = null;
-            
+
             for (const title of targetTitles) {
                 anchorHeader = allHeaders.find(el => el.textContent.trim() === title && el.tagName !== 'A');
                 if (anchorHeader) break;
@@ -268,10 +313,10 @@
         // Create a custom wrapper that acts as our payload vehicle
         const customWrapper = document.createElement('div');
         customWrapper.id = 'prankster-feed-payload';
-        
+
         // Populate it with the composer box ON TOP and the rich Posts header right below it
         customWrapper.innerHTML = COMPOSER_BOX_HTML + RICH_POSTS_HEADER_HTML;
-        
+
         // Replace the native limited Posts header with our double-feature block
         postsContainer.replaceWith(customWrapper);
     }
@@ -285,7 +330,7 @@
         if (coverContainer && !document.getElementById('fake-edit-cover-btn')) {
             const editCoverBtn = document.createElement('div');
             editCoverBtn.id = 'fake-edit-cover-btn';
-            
+
             editCoverBtn.innerHTML = `
                 <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
                     <div style="width: 16px; height: 16px; display: flex;">
@@ -305,7 +350,7 @@
                 borderRadius: '6px',
                 cursor: 'pointer',
                 boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
-                zIndex: '9', 
+                zIndex: '9',
                 userSelect: 'none',
                 transition: 'background-color 0.2s'
             });
@@ -321,17 +366,17 @@
 
     function addProfileCameraIcon() {
         const profileImages = Array.from(document.querySelectorAll('svg image'));
-        
+
         const targetImage = profileImages.find(img => {
             const rect = img.getBoundingClientRect();
-            return rect.width > 100 && rect.height > 100; 
+            return rect.width > 100 && rect.height > 100;
         });
-        
+
         if (!targetImage) return;
 
         const profileAnchor = targetImage.closest('a');
         if (!profileAnchor) return;
-        
+
         const profileContainer = profileAnchor.querySelector('div') || profileAnchor;
 
         if (profileContainer && !document.getElementById('fake-profile-cam-btn')) {
@@ -341,7 +386,7 @@
 
             const camBtn = document.createElement('div');
             camBtn.id = 'fake-profile-cam-btn';
-            
+
             camBtn.innerHTML = `
                 <div style="width: 20px; height: 20px; display: flex;">
                     ${FB_CAMERA_SVG}
@@ -361,8 +406,8 @@
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                zIndex: '10', 
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0,0,0,0.05)', 
+                zIndex: '10',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0,0,0,0.05)',
                 transition: 'background-color 0.2s, transform 0.1s'
             });
 
@@ -385,7 +430,7 @@
         if (!h1Element) return;
 
         const newName = h1Element.textContent.trim();
-        
+
         const activeMenu = document.querySelector('[role="menu"], [role="dialog"]');
         if (!activeMenu) return;
 
@@ -397,15 +442,102 @@
         }
     }
 
+
+
+
+
+
+
+
+  // ==========================================
+    // MODULE 3: FEED PRANKSTER (COMMENTS & ACTION BARS)
+    // ==========================================
+
+    function forceFullActionBars() {
+        // Find the outer wrappers for the post action bars safely
+        const actionWrappers = document.querySelectorAll('.xbmvrgn.x1diwwjn');
+
+        actionWrappers.forEach(wrapper => {
+            // Check if we've already injected our custom bar here to prevent loops
+            if (wrapper.querySelector('[data-prankster-action-bar="true"]')) return;
+
+            // Analyze the text inside the wrapper to see if it's restricted
+            const textContent = wrapper.textContent || "";
+            const hasLike = textContent.includes("Like");
+            const hasComment = textContent.includes("Comment");
+            const hasShare = textContent.includes("Share");
+
+            // If any of the 3 buttons are missing, we inject our fake bar
+            if (!hasLike || !hasComment || !hasShare) {
+                // Find the direct React-controlled child flex container
+                const nativeBar = wrapper.querySelector('.x9f619.x1ja2u2z.x78zum5.x2lah0s.x1n2onr6.x1qughib.x1qjc9v5.xozqiw3.x1q0g3np.xyri2b.x1c1uobl.xjkvuk6.x1iorvi4.x11lt19s.xe9ewy2.x4cne27.xifccgj');
+                
+                if (nativeBar) {
+                    // Hide the real one so React doesn't freak out
+                    nativeBar.style.display = 'none';
+                    
+                    // Create and append our fake one seamlessly
+                    const fakeContainer = document.createElement('div');
+                    fakeContainer.innerHTML = FAKE_ACTION_BAR_HTML;
+                    wrapper.appendChild(fakeContainer.firstElementChild);
+                }
+            }
+        });
+    }
+
+    function syncCommentIdentities() {
+        // 1. Get the Profile Owner's name reliably
+        const h1Element = document.querySelector("h1");
+        if (!h1Element) return;
+        const ownerName = h1Element.textContent.trim();
+        const targetLabel = `Comment as ${ownerName}`;
+
+        // 2. Change the actual input placeholder attributes
+        const textboxes = document.querySelectorAll('div[aria-label^="Comment as "], div[aria-placeholder^="Comment as "]');
+        textboxes.forEach(box => {
+            if (box.getAttribute('aria-label') && box.getAttribute('aria-label') !== targetLabel) {
+                box.setAttribute('aria-label', targetLabel);
+            }
+            if (box.getAttribute('aria-placeholder') && box.getAttribute('aria-placeholder') !== targetLabel) {
+                box.setAttribute('aria-placeholder', targetLabel);
+            }
+        });
+
+        // 3. Change the visual grey text that shows up before typing
+        const visualPlaceholders = document.querySelectorAll('div[aria-hidden="true"] div');
+        visualPlaceholders.forEach(el => {
+            if (el.textContent.startsWith("Comment as ") && el.textContent !== targetLabel) {
+                el.textContent = targetLabel;
+            }
+        });
+
+        // 4. Swap the mini avatars next to the comment boxes and action lists
+        const sourceUrl = getMainProfilePictureUrl();
+        if (sourceUrl) {
+            // This targets all the small comment avatars generated dynamically as you scroll
+            const commentAvatars = document.querySelectorAll('form[role="presentation"] svg image, div[aria-label="Available Voices"] svg image, div[aria-label="Comment with an avatar sticker"] svg image');
+            
+            commentAvatars.forEach(img => {
+                setImageUrl(img, sourceUrl); // Leverages the helper you already have in Module 2
+            });
+        }
+    }
+
+
+
     function runPranksterLogic() {
         injectFakeMainButtons();
         makeIntroAndAboutEditable();
         injectCustomHeaderEditButtons();
-        injectHighlightsButton(); 
+        injectHighlightsButton();
         injectComposerAndRichPostsHeader(); // Replaced logic
         addEditCoverPhotoButton();
         addProfileCameraIcon();
-        syncDropdownName(); 
+        syncDropdownName();
+
+        // NEW MODULE STUFF HERE
+        forceFullActionBars();
+        syncCommentIdentities();
     }
 
 
@@ -535,9 +667,9 @@
 
         // Specific handling to sync the injected composer profile picture
         const composerAvatar = document.querySelector('.prankster-composer-avatar');
-        if (composerAvatar) { 
-            setImageUrl(composerAvatar, sourceUrl); 
-            matches.push(composerAvatar); 
+        if (composerAvatar) {
+            setImageUrl(composerAvatar, sourceUrl);
+            matches.push(composerAvatar);
         }
 
         return { sourceUrl, count: matches.length };

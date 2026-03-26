@@ -285,30 +285,41 @@
 
         const fakeCard = document.getElementById('my-fake-highlights-card-wrapper');
 
+
+
         // ==========================================
         // LOGIC A: NATIVE HIGHLIGHTS EXIST
         // ==========================================
+        
+    
         if (nativeHighlightsHeader) {
-            // If Facebook was slow to load and we accidentally injected a fake card earlier, nuke it!
             if (fakeCard) fakeCard.remove();
 
             const cardWrapper = nativeHighlightsHeader.closest('.xquyuld') || nativeHighlightsHeader.closest('[style*="border-radius: max"]');
 
-            // If we can't find the card boundaries, or we already injected our button, stop here.
             if (!cardWrapper || cardWrapper.querySelector(".my-fake-highlights-btn-wrapper")) return;
 
-            // Determine if they actually have highlights to change the button text
             const hasHighlights = cardWrapper.querySelectorAll('a[href*="source=profile_highlight"]').length > 0 || cardWrapper.querySelectorAll('svg image').length > 0;
             const buttonText = hasHighlights ? "Edit highlights" : "Add highlights";
 
             const btnWrapper = document.createElement("div");
             btnWrapper.className = "my-fake-highlights-btn-wrapper";
-            btnWrapper.style.padding = "0px 16px 16px 16px";
+            
+            // 1. Remove the old 16px margin top and keep bottom padding
+            btnWrapper.style.padding = "0px 16px 0px 16px";
             btnWrapper.style.width = "100%";
             btnWrapper.style.boxSizing = "border-box";
-            btnWrapper.style.marginTop = "16px";
+            btnWrapper.style.marginTop = "0px"; 
 
-            // Upgraded to use the pure CSS fb-prank-surface class!
+            // 2. Use Transform to force the button upward, bypassing margin restrictions.
+            // Adjust the -8px to whatever looks best (e.g., -12px, -4px)
+            btnWrapper.style.transform = "translateY(-20px)"; 
+            
+            // To ensure it doesn't get clipped by the parent's overflow hidden, 
+            // making it relative and bumping the z-index can help.
+            btnWrapper.style.position = "relative";
+            btnWrapper.style.zIndex = "1";
+
             btnWrapper.innerHTML = `
                 <div aria-label="${buttonText}" class="fb-prank-surface" role="button" tabindex="0" style="position: relative !important; width: 100%; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: ${CONFIG.HIGHLIGHTS_BORDER_RADIUS}; font-weight: 600; font-size: 15px; cursor: pointer;">
                     ${buttonText}
@@ -316,8 +327,10 @@
             `;
 
             cardWrapper.appendChild(btnWrapper);
-
         }
+
+
+
         // ==========================================
         // LOGIC B: NO NATIVE HIGHLIGHTS (Inject Fallback)
         // ==========================================

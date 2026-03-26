@@ -440,7 +440,9 @@
         const h1Element = document.querySelector("h1");
         if (!h1Element) return;
 
-        const newName = h1Element.textContent.trim();
+        // Extract the name and strip out anything inside parentheses
+        const rawName = h1Element.textContent;
+        const newName = rawName.replace(/\s*\(.*\)\s*/, '').trim();
 
         const activeMenu = document.querySelector('[role="menu"], [role="dialog"]');
         if (!activeMenu) return;
@@ -485,7 +487,10 @@
     function syncCommentIdentities() {
         const h1Element = document.querySelector("h1");
         if (!h1Element) return;
-        const ownerName = h1Element.textContent.trim();
+
+        // Extract the name and strip out anything inside parentheses
+        const rawName = h1Element.textContent;
+        const ownerName = rawName.replace(/\s*\(.*\)\s*/, '').trim();
         const targetLabel = `Comment as ${ownerName}`;
 
         const textboxes = document.querySelectorAll('div[aria-label^="Comment as "], div[aria-placeholder^="Comment as "]');
@@ -514,7 +519,6 @@
             });
         }
     }
-
     function runPranksterLogic() {
         injectFakeMainButtons();
         makeIntroAndAboutEditable();

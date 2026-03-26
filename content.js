@@ -235,15 +235,33 @@
     }
 
     function injectHighlightsButton() {
-        const allHeaders = Array.from(document.querySelectorAll("h2, span[dir='auto']"));
-        const nativeHighlightsHeader = allHeaders.find(el => el.textContent.trim() === "Highlights" && el.tagName !== 'A');
+        // 1. Find the Native Highlights text. We look at all spans to avoid missing it if Facebook changes attributes
+        const allElements = Array.from(document.querySelectorAll("span, h2"));
 
+        const nativeHighlightsHeader = allElements.find(el => {
+            const text = el.textContent.trim();
+            const isTargetText = (text === "Highlights" || text === "Story highlights");
+            const isNotOurs = !el.closest('#my-fake-highlights-card-wrapper');
+            // We want the actual text node container, usually an innermost span
+            return isTargetText && isNotOurs && el.children.length === 0;
+        });
+
+        const fakeCard = document.getElementById('my-fake-highlights-card-wrapper');
+
+        // ==========================================
+        // LOGIC A: NATIVE HIGHLIGHTS EXIST
+        // ==========================================
         if (nativeHighlightsHeader) {
+            // If Facebook was slow to load and we accidentally injected a fake card earlier, nuke it!
+            if (fakeCard) fakeCard.remove();
+
             const cardWrapper = nativeHighlightsHeader.closest('.xquyuld') || nativeHighlightsHeader.closest('[style*="border-radius: max"]');
 
+            // If we can't find the card boundaries, or we already injected our button, stop here.
             if (!cardWrapper || cardWrapper.querySelector(".my-fake-highlights-btn-wrapper")) return;
 
-            const hasHighlights = cardWrapper.querySelectorAll('a[href*="source=profile_highlight"]').length > 0;
+            // Determine if they actually have highlights to change the button text
+            const hasHighlights = cardWrapper.querySelectorAll('a[href*="source=profile_highlight"]').length > 0 || cardWrapper.querySelectorAll('svg image').length > 0;
             const buttonText = hasHighlights ? "Edit highlights" : "Add highlights";
 
             const btnWrapper = document.createElement("div");
@@ -253,60 +271,60 @@
             btnWrapper.style.boxSizing = "border-box";
             btnWrapper.style.marginTop = "16px";
 
-            const NORMAL_CLASSES = "x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh";
-            const HOVER_CLASSES = "x1ey2m1c xtijo5x x1o0tod x47corl x10l6tqk x13vifvy x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh x1hc1fzr x1mq3mr6 x1wpzbip";
-
+            // Upgraded to use the pure CSS fb-prank-surface class!
             btnWrapper.innerHTML = `
-                <div aria-label="${buttonText}" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" role="button" tabindex="0" style="background-color: var(--secondary-button-background); border-radius: ${CONFIG.HIGHLIGHTS_BORDER_RADIUS}; transition: transform 100ms ease;">
-                    <div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 x1qhmfi1 x1r1pt67" style="height: 36px;">
-                        <div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt">
-                            <div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj">
-                                <span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f x1dem4cn" dir="auto">
-                                    <span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">${buttonText}</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="${NORMAL_CLASSES}" role="none" data-visualcompletion="ignore" style="inset: 0px; border-radius: ${CONFIG.HIGHLIGHTS_BORDER_RADIUS}; transition: background-color 150ms ease;"></div>
-                    </div>
+                <div aria-label="${buttonText}" class="fb-prank-surface" role="button" tabindex="0" style="position: relative !important; width: 100%; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: ${CONFIG.HIGHLIGHTS_BORDER_RADIUS}; font-weight: 600; font-size: 15px; cursor: pointer;">
+                    ${buttonText}
                 </div>
             `;
 
-            const clickableButton = btnWrapper.querySelector('[role="button"]');
-            const overlayDiv = btnWrapper.querySelector('[data-visualcompletion="ignore"]');
-
-            if (clickableButton && overlayDiv) {
-                clickableButton.addEventListener('mouseenter', () => overlayDiv.className = HOVER_CLASSES);
-                clickableButton.addEventListener('mouseleave', () => {
-                    overlayDiv.className = NORMAL_CLASSES;
-                    clickableButton.style.transform = 'scale(1)';
-                });
-                clickableButton.addEventListener('mousedown', () => clickableButton.style.transform = 'scale(0.96)');
-                clickableButton.addEventListener('mouseup', () => clickableButton.style.transform = 'scale(1)');
-            }
-
             cardWrapper.appendChild(btnWrapper);
 
-        } else {
-            if (document.getElementById('my-fake-highlights-card-wrapper')) return;
+        }
+        // ==========================================
+        // LOGIC B: NO NATIVE HIGHLIGHTS (Inject Fallback)
+        // ==========================================
+        else {
+            if (fakeCard) return; // Already injected
 
             const targetTitles = ["Personal details", "Intro", "Photos", "Friends", "About"];
             let anchorHeader = null;
 
             for (const title of targetTitles) {
-                anchorHeader = allHeaders.find(el => el.textContent.trim() === title && el.tagName !== 'A');
+                // Find innermost span with this text to ensure we get the real section header
+                anchorHeader = allElements.find(el => el.textContent.trim() === title && el.children.length === 0 && !el.closest('#my-fake-highlights-card-wrapper'));
                 if (anchorHeader) break;
             }
 
-            if (!anchorHeader) return; 
+            if (!anchorHeader) return;
 
             let anchorCard = anchorHeader.closest('.xquyuld') || anchorHeader.closest('[style*="border-radius: max"]');
             if (!anchorCard || !anchorCard.parentElement) return;
 
-            const fakeCard = document.createElement('div');
-            fakeCard.id = 'my-fake-highlights-card-wrapper';
-            fakeCard.innerHTML = FALLBACK_HIGHLIGHTS_HTML;
+            const newFakeCard = document.createElement('div');
+            newFakeCard.id = 'my-fake-highlights-card-wrapper';
+            newFakeCard.innerHTML = FALLBACK_HIGHLIGHTS_HTML;
 
-            anchorCard.parentElement.insertAdjacentElement('afterend', fakeCard);
+            // Inject the fallback box
+            anchorCard.parentElement.insertAdjacentElement('afterend', newFakeCard);
+
+            // Immediately inject the button into our brand new fake box
+            const fakeCardWrapper = newFakeCard.querySelector('.xquyuld') || newFakeCard.querySelector('[style*="border-radius: max"]');
+            if (fakeCardWrapper) {
+                const btnWrapper = document.createElement("div");
+                btnWrapper.className = "my-fake-highlights-btn-wrapper";
+                btnWrapper.style.padding = "0px 16px 16px 16px";
+                btnWrapper.style.width = "100%";
+                btnWrapper.style.boxSizing = "border-box";
+                btnWrapper.style.marginTop = "16px";
+
+                btnWrapper.innerHTML = `
+                    <div aria-label="Add highlights" class="fb-prank-surface" role="button" tabindex="0" style="position: relative !important; width: 100%; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: ${CONFIG.HIGHLIGHTS_BORDER_RADIUS}; font-weight: 600; font-size: 15px; cursor: pointer;">
+                        Add highlights
+                    </div>
+                `;
+                fakeCardWrapper.appendChild(btnWrapper);
+            }
         }
     }
 
@@ -335,7 +353,7 @@
         if (coverContainer && !document.getElementById('fake-edit-cover-btn')) {
             const editCoverBtn = document.createElement('div');
             editCoverBtn.id = 'fake-edit-cover-btn';
-            
+
             // Apply our new master class
             editCoverBtn.className = 'fb-prank-surface';
 
@@ -385,7 +403,7 @@
 
             const camBtn = document.createElement('div');
             camBtn.id = 'fake-profile-cam-btn';
-            
+
             // Apply our new master class
             camBtn.className = 'fb-prank-surface';
 
@@ -452,10 +470,10 @@
 
             if (!hasLike || !hasComment || !hasShare) {
                 const nativeBar = wrapper.querySelector('.x9f619.x1ja2u2z.x78zum5.x2lah0s.x1n2onr6.x1qughib.x1qjc9v5.xozqiw3.x1q0g3np.xyri2b.x1c1uobl.xjkvuk6.x1iorvi4.x11lt19s.xe9ewy2.x4cne27.xifccgj');
-                
+
                 if (nativeBar) {
                     nativeBar.style.display = 'none';
-                    
+
                     const fakeContainer = document.createElement('div');
                     fakeContainer.innerHTML = FAKE_ACTION_BAR_HTML;
                     wrapper.appendChild(fakeContainer.firstElementChild);
@@ -490,9 +508,9 @@
         const sourceUrl = getMainProfilePictureUrl();
         if (sourceUrl) {
             const commentAvatars = document.querySelectorAll('form[role="presentation"] svg image, div[aria-label="Available Voices"] svg image, div[aria-label="Comment with an avatar sticker"] svg image');
-            
+
             commentAvatars.forEach(img => {
-                setImageUrl(img, sourceUrl); 
+                setImageUrl(img, sourceUrl);
             });
         }
     }
@@ -502,7 +520,7 @@
         makeIntroAndAboutEditable();
         injectCustomHeaderEditButtons();
         injectHighlightsButton();
-        injectComposerAndRichPostsHeader(); 
+        injectComposerAndRichPostsHeader();
         addEditCoverPhotoButton();
         addProfileCameraIcon();
         syncDropdownName();

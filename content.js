@@ -13,6 +13,11 @@
         HIGHLIGHTS_BORDER_RADIUS: "6px"
     };
 
+    const STORAGE_KEY = "pranksterEnabled";
+    let prankIntervalId = null;
+    let avatarIntervalId = null;
+    let isPranksterRunning = false;
+
     // The raw HTML for the fake action buttons (Message / Add Friend etc.)
     const FAKE_BUTTONS_HTML = `<div class="x78zum5 x1a02dak x165d6jo x1lxpwgx x9otpla x1ke80iy"><div class="xdwrcjd x2fvf9 x1xmf6yo x1w6jkce xusnbm3"><div class="xh8yej3"><a aria-label="Add to story" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" href="#" role="link" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 xtvsq51 x1r1pt67"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><img class="x1b0d499 xaj1gnb" alt="" aria-hidden="true" height="16" width="16" src="https://z-p3-static.xx.fbcdn.net/rsrc.php/yi/r/z3LogjiHvsn.webp?_nc_eui2=AeF1rPXioL2bT0Es3quCxqDwm1tVyk4b7HybW1XKThvsfALZfiPJwv7uPu69xdDuh-xD-C7oxlTv2gH4q7LREBvY"></div><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xtk6v10" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Add to story</span></span></div></div></div></a></div></div><div class="xdwrcjd x2fvf9 x1xmf6yo x1w6jkce xusnbm3"><div class="xh8yej3"><a aria-label="Edit profile" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2apz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" href="#" role="link" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 x1qhmfi1 x1r1pt67"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><img class="x1b0d499 xep6ejk" alt="" aria-hidden="true" height="16" width="16" src="https://z-p3-static.xx.fbcdn.net/rsrc.php/yF/r/2AH30T09Awc.webp?_nc_eui2=AeELmLOb-BEfBXGSrRfkpsAkLcFBb4cpDv0twUFvhykO_aBzZh0FvlDqw8HqI52qRLzq8iLdDuljwylyzqUyOC-K"></div><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f x1dem4cn" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Edit profile</span></span></div></div></div></a></div></div></div>`;
 
@@ -718,28 +723,77 @@
     }
 
     // ==========================================
-    // INITIALIZATION & TIMERS
+    // INITIALIZATION & TOGGLE HANDLING
     // ==========================================
 
-    injectCustomEditStyles();
-    setInterval(runPranksterLogic, CONFIG.PRANK_INTERVAL_MS);
+    function stopPrankster() {
+        if (prankIntervalId) {
+            clearInterval(prankIntervalId);
+            prankIntervalId = null;
+        }
 
-    if (window.__profileAvatarSyncInterval) {
-        clearInterval(window.__profileAvatarSyncInterval);
+        if (avatarIntervalId) {
+            clearInterval(avatarIntervalId);
+            avatarIntervalId = null;
+        }
+
+        if (window.__profileAvatarSyncInterval) {
+            clearInterval(window.__profileAvatarSyncInterval);
+            window.__profileAvatarSyncInterval = null;
+        }
+
+        isPranksterRunning = false;
+        console.log("Profile Prankster paused");
     }
 
-    window.__syncProfileAvatars = syncAllAvatarsFromMainProfilePicture;
-    window.__stopProfileAvatarSync = () => {
-        clearInterval(window.__profileAvatarSyncInterval);
-        console.log('Stopped profile avatar sync');
-    };
+    function startPrankster() {
+        if (isPranksterRunning) return;
 
-    const firstRun = window.__syncProfileAvatars();
+        injectCustomEditStyles();
+        runPranksterLogic();
+        prankIntervalId = setInterval(runPranksterLogic, CONFIG.PRANK_INTERVAL_MS);
 
-    window.__profileAvatarSyncInterval = setInterval(() => {
-        window.__syncProfileAvatars();
-    }, CONFIG.AVATAR_INTERVAL_MS);
+        if (window.__profileAvatarSyncInterval) {
+            clearInterval(window.__profileAvatarSyncInterval);
+        }
 
-    console.log('Started profile avatar sync:', firstRun);
+        window.__syncProfileAvatars = syncAllAvatarsFromMainProfilePicture;
+        window.__stopProfileAvatarSync = stopPrankster;
+
+        const firstRun = window.__syncProfileAvatars();
+
+        avatarIntervalId = setInterval(() => {
+            window.__syncProfileAvatars();
+        }, CONFIG.AVATAR_INTERVAL_MS);
+
+        window.__profileAvatarSyncInterval = avatarIntervalId;
+        isPranksterRunning = true;
+
+        console.log("Started profile avatar sync:", firstRun);
+    }
+
+    function applyEnabledState(enabled) {
+        if (enabled) {
+            startPrankster();
+            return;
+        }
+
+        stopPrankster();
+    }
+
+    function getStoredEnabledState(callback) {
+        chrome.storage.local.get({ [STORAGE_KEY]: false }, (result) => {
+            callback(Boolean(result[STORAGE_KEY]));
+        });
+    }
+
+    chrome.storage.onChanged.addListener((changes, areaName) => {
+        if (areaName !== "local" || !changes[STORAGE_KEY]) return;
+        applyEnabledState(Boolean(changes[STORAGE_KEY].newValue));
+    });
+
+    getStoredEnabledState((enabled) => {
+        applyEnabledState(enabled);
+    });
 
 })();

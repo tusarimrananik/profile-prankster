@@ -498,27 +498,53 @@
         postsContainer.replaceWith(customWrapper);
     }
 
+    function findFallbackCoverContainer() {
+        const main = document.querySelector('[role="main"]') || document;
+        const profileName = main.querySelector('h1');
+        const profileNameTop = profileName?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+
+        const candidates = Array.from(main.querySelectorAll('div'))
+            .map(el => {
+                const rect = el.getBoundingClientRect();
+                const style = getComputedStyle(el);
+                return { el, rect, style };
+            })
+            .filter(({ el, rect, style }) => {
+                if (el.id === 'fake-edit-cover-btn' || el.querySelector('#fake-edit-cover-btn')) return false;
+                if (rect.width < 500 || rect.height < 180) return false;
+                if (rect.top < 0 || rect.top > 260) return false;
+                if (rect.bottom >= profileNameTop) return false;
+                if (style.display === 'none' || style.visibility === 'hidden') return false;
+                if (style.backgroundColor === 'rgba(0, 0, 0, 0)' || style.backgroundColor === 'transparent') return false;
+                if (el.querySelector('img, svg, image, video, a[aria-label="View profile cover photo"]')) return false;
+                return true;
+            })
+            .sort((a, b) => {
+                const areaA = a.rect.width * a.rect.height;
+                const areaB = b.rect.width * b.rect.height;
+                return areaB - areaA;
+            });
+
+        return candidates[0]?.el || null;
+    }
+
     function addEditCoverPhotoButton() {
         const coverPhotoLink = document.querySelector('a[aria-label="View profile cover photo"]');
-        if (!coverPhotoLink) return;
+        const coverContainer = coverPhotoLink?.parentElement || findFallbackCoverContainer();
+        const buttonText = coverPhotoLink ? 'Edit cover photo' : 'Add cover photo';
 
-        const coverContainer = coverPhotoLink.parentElement;
+        if (!coverContainer) return;
 
-        if (coverContainer && !document.getElementById('fake-edit-cover-btn')) {
-            const editCoverBtn = document.createElement('div');
+        let editCoverBtn = document.getElementById('fake-edit-cover-btn');
+        if (editCoverBtn && editCoverBtn.parentElement !== coverContainer) {
+            editCoverBtn.remove();
+            editCoverBtn = null;
+        }
+
+        if (!editCoverBtn) {
+            editCoverBtn = document.createElement('div');
             editCoverBtn.id = 'fake-edit-cover-btn';
-
-            // Apply our new master class
             editCoverBtn.className = 'fb-prank-surface';
-
-            editCoverBtn.innerHTML = `
-                <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
-                    <div style="width: 16px; height: 16px; display: flex;">
-                        ${FB_CAMERA_SVG}
-                    </div>
-                    <span style="font-size: 15px; font-weight: 600; font-family: Segoe UI, system-ui, sans-serif;">Edit cover photo</span>
-                </div>
-            `;
 
             Object.assign(editCoverBtn.style, {
                 bottom: '16px',
@@ -530,7 +556,18 @@
                 zIndex: '9',
                 userSelect: 'none'
             });
+        }
 
+        editCoverBtn.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <div style="width: 16px; height: 16px; display: flex;">
+                    ${FB_CAMERA_SVG}
+                </div>
+                <span style="font-size: 15px; font-weight: 600; font-family: Segoe UI, system-ui, sans-serif;">${buttonText}</span>
+            </div>
+        `;
+
+        if (!coverContainer.contains(editCoverBtn)) {
             coverContainer.appendChild(editCoverBtn);
         }
     }

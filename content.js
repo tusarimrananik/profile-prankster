@@ -779,6 +779,14 @@
         );
     }
 
+    function isInsidePostContent(el) {
+        return Boolean(
+            el.closest(
+                '[role="main"], [role="article"], [data-pagelet*="FeedUnit"], [data-pagelet*="ProfileTimeline"], [aria-label="Timeline"]'
+            )
+        );
+    }
+
     function isTopRightAvatarCandidate(el) {
         const box = el.closest('svg') || el;
         const rect = box.getBoundingClientRect();
@@ -788,13 +796,14 @@
         if (!isPhotoLikeUrl(url)) return false;
         if (style.display === 'none' || style.visibility === 'hidden') return false;
         if (rect.width === 0 || rect.height === 0) return false;
+        if (isInsidePostContent(el)) return false;
 
         const squareNess =
             1 - Math.abs(rect.width - rect.height) / Math.max(rect.width, rect.height);
 
         if (squareNess < 0.85) return false;
 
-        const inTopZone = rect.top >= 0 && rect.top <= 420;
+        const inTopZone = rect.top >= 0 && rect.top <= 180;
         const inRightSide = rect.left >= window.innerWidth * 0.55;
         const avatarSized =
             rect.width >= 24 &&

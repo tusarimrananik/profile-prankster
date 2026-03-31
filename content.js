@@ -14,12 +14,18 @@
     };
 
     const STORAGE_KEY = "pranksterEnabled";
+    const BUTTON_MODE_KEY = "pranksterButtonMode";
     let prankIntervalId = null;
     let avatarIntervalId = null;
     let isPranksterRunning = false;
+    let lastDetectedProfileType = null;
+    let currentButtonMode = "auto";
 
-    // The raw HTML for the fake action buttons (Message / Add Friend etc.)
-    const FAKE_BUTTONS_HTML = `<div class="x78zum5 x1a02dak x165d6jo x1lxpwgx x9otpla x1ke80iy"><div class="xdwrcjd x2fvf9 x1xmf6yo x1w6jkce xusnbm3"><div class="xh8yej3"><a aria-label="Add to story" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" href="#" role="link" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 xtvsq51 x1r1pt67"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><img class="x1b0d499 xaj1gnb" alt="" aria-hidden="true" height="16" width="16" src="https://z-p3-static.xx.fbcdn.net/rsrc.php/yi/r/z3LogjiHvsn.webp?_nc_eui2=AeF1rPXioL2bT0Es3quCxqDwm1tVyk4b7HybW1XKThvsfALZfiPJwv7uPu69xdDuh-xD-C7oxlTv2gH4q7LREBvY"></div><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xtk6v10" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Add to story</span></span></div></div></div></a></div></div><div class="xdwrcjd x2fvf9 x1xmf6yo x1w6jkce xusnbm3"><div class="xh8yej3"><a aria-label="Edit profile" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2apz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" href="#" role="link" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 x1qhmfi1 x1r1pt67"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><img class="x1b0d499 xep6ejk" alt="" aria-hidden="true" height="16" width="16" src="https://z-p3-static.xx.fbcdn.net/rsrc.php/yF/r/2AH30T09Awc.webp?_nc_eui2=AeELmLOb-BEfBXGSrRfkpsAkLcFBb4cpDv0twUFvhykO_aBzZh0FvlDqw8HqI52qRLzq8iLdDuljwylyzqUyOC-K"></div><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f x1dem4cn" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Edit profile</span></span></div></div></div></a></div></div></div>`;
+    // The raw HTML for the fake action buttons.
+    const FAKE_BUTTONS_HTML_NORMAL = `<div><div class="x78zum5 x1a02dak x165d6jo x1lxpwgx x9otpla x1ke80iy"><!--$--><div class="xdwrcjd x2fvf9 x1xmf6yo x1w6jkce xusnbm3"><div class="xh8yej3"><a aria-label="Add to story" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" href="https://web.facebook.com/stories/create/" role="link" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 xtvsq51 x1r1pt67"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><img class="x1b0d499 xaj1gnb" src="https://static.xx.fbcdn.net/rsrc.php/yi/r/z3LogjiHvsn.webp?_nc_eui2=AeF-td7xS_0fCoIg5ZAKa84cUeosC8rraIVR6iwLyutohUDJ9pp2QI0UZ5OpniZ_3GtwbwRunYrqUmubXzhDD7cU" alt="" aria-hidden="true" height="16" width="16"></div><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x1f6kntn xvq8zen x1s688f xtk6v10" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Add to story</span></span></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="inset: 0px;"></div></div></a></div></div><div class="xdwrcjd x2fvf9 x1xmf6yo x1w6jkce xusnbm3"><div class="xh8yej3"><a aria-label="Edit profile" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" href="/profile.php?fb_profile_edit_entry_point=%7B%22click_point%22%3A%22edit_profile_button%22%2C%22feature%22%3A%22profile_header%22%7D&amp;id=100006234702363&amp;sk=about" role="link" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 x1qhmfi1 x1r1pt67"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><img class="x1b0d499 xep6ejk" src="https://static.xx.fbcdn.net/rsrc.php/yF/r/2AH30T09Awc.webp?_nc_eui2=AeH9WvGdqhDGih-iM5W37fUTkfaWfC7BK5yR9pZ8LsErnHhdhdSqLkp6m7fjvlO9ZkCJ3h5xJmJpAUIhdjV-vA6R" alt="" aria-hidden="true" height="16" width="16"></div><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x1f6kntn xvq8zen x1s688f x1dem4cn" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Edit profile</span></span></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="inset: 0px;"></div></div></a></div></div><div class="xdwrcjd x2fvf9 x1xmf6yo x1w6jkce xusnbm3"><div aria-expanded="false" aria-label="See recommendations" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" role="button" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1qhmfi1 x1r1pt67 x7at6mh xkde5i4" style="transform: none;"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" class="x14rh7hd x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" style="--x-color: var(--primary-icon);"><path d="M6.94 10.354a1.5 1.5 0 0 0 2.12 0l2.647-2.647a1 1 0 0 0-1.414-1.414L8 8.586 5.707 6.293a1 1 0 0 0-1.414 1.414l2.646 2.647z"></path></svg></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="inset: 0px;"></div></div></div></div><!--/$--></div></div>`;
+
+
+    const FAKE_BUTTONS_HTML_PROFESSIONAL = `<div><div class="x78zum5 x1a02dak x165d6jo x1lxpwgx x9otpla x1ke80iy"><!--$--><div class="xdwrcjd x2fvf9 x1xmf6yo x1w6jkce xusnbm3"><div class="xh8yej3"><a aria-label="Professional dashboard" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" href="/professional_dashboard/?ref=profile_action" role="link" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 xtvsq51 x1r1pt67"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><img class="x1b0d499 xaj1gnb" src="https://static.xx.fbcdn.net/rsrc.php/yl/r/XiqKwrWtew-.webp?_nc_eui2=AeHbqKznMpy20IZXfT8BUUKWdU4CwSRjn0J1TgLBJGOfQkgaTQUMsYh4QlxN4v72WCKMq-dvxFpa58QnJzO2V_xS" alt="" aria-hidden="true" height="16" width="16"></div><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x1f6kntn xvq8zen x1s688f xtk6v10" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Professional dashboard</span></span></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="inset: 0px;"></div></div></a></div></div><div class="xdwrcjd x2fvf9 x1xmf6yo x1w6jkce xusnbm3"><div class="xh8yej3"><a aria-label="Edit" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" href="/profile.php?fb_profile_edit_entry_point=%7B%22click_point%22%3A%22edit_profile_button%22%2C%22feature%22%3A%22profile_header%22%7D&amp;id=100006234702363&amp;sk=about" role="link" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 x1qhmfi1 x1r1pt67"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><img class="x1b0d499 xep6ejk" src="https://static.xx.fbcdn.net/rsrc.php/yF/r/2AH30T09Awc.webp?_nc_eui2=AeH9WvGdqhDGih-iM5W37fUTkfaWfC7BK5yR9pZ8LsErnHhdhdSqLkp6m7fjvlO9ZkCJ3h5xJmJpAUIhdjV-vA6R" alt="" aria-hidden="true" height="16" width="16"></div><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x1f6kntn xvq8zen x1s688f x1dem4cn" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Edit</span></span></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="inset: 0px;"></div></div></a></div></div><div class="xdwrcjd x2fvf9 x1xmf6yo x1w6jkce xusnbm3"><div class="xh8yej3"><div aria-label="Advertise" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" role="button" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 xpdmqnj x1g0dm76 x1qhmfi1 x1r1pt67"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><img class="x1b0d499 xep6ejk" src="https://static.xx.fbcdn.net/rsrc.php/yh/r/sPVjSYVIm7y.webp?_nc_eui2=AeEEHmULvgCfg6GqItnOz2x3DRRGydSk19cNFEbJ1KTX1zZMBP-dOd-NQb23K3GGqkzLh5CyEfKfSBT4ocBCfDD1" alt="" aria-hidden="true" height="16" width="16"></div><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x1f6kntn xvq8zen x1s688f x1dem4cn" dir="auto"><span class="x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft">Advertise</span></span></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="inset: 0px;"></div></div></div></div></div><div class="xdwrcjd x2fvf9 x1xmf6yo x1w6jkce xusnbm3"><div aria-expanded="false" aria-label="See recommendations" class="x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd x1ypdohk x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl x16tdsg8 x1hl2dhg xggy1nq x1fmog5m xu25z0z x140muxe xo1y3bh x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3" role="button" tabindex="0"><div role="none" class="x1ja2u2z x78zum5 x2lah0s x1n2onr6 xl56j7k x6s0dn4 xozqiw3 x1q0g3np x14ldlfn x1b1wa69 xws8118 x5fzff1 x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1qhmfi1 x1r1pt67 x7at6mh xkde5i4" style="transform: none;"><div class="html-div xdj266r xat24cr xexx8yu xyri2b x18d9i69 x1c1uobl x6s0dn4 x78zum5 xl56j7k x14ayic xwyz465 x1e0frkt"><div role="none" class="x9f619 x1n2onr6 x1ja2u2z x193iq5w xeuugli x6s0dn4 x78zum5 x2lah0s xsqbvy7 xb9jzoj"><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" class="x14rh7hd x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" style="--x-color: var(--primary-icon);"><path d="M6.94 10.354a1.5 1.5 0 0 0 2.12 0l2.647-2.647a1 1 0 0 0-1.414-1.414L8 8.586 5.707 6.293a1 1 0 0 0-1.414 1.414l2.646 2.647z"></path></svg></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="inset: 0px;"></div></div></div></div><!--/$--></div></div>`;
 
     // The official Facebook Camera SVG
     const FB_CAMERA_SVG = `
@@ -206,19 +212,112 @@
     }
 
     function injectFakeMainButtons() {
-        const messageBtn = document.querySelector('[aria-label="Message"]');
-        if (!messageBtn) return;
+        const h1Element = document.querySelector("h1");
+        const mainScope = h1Element?.closest('[role="main"]') || document;
 
-        let container = messageBtn.parentElement;
-        while (container && container.children.length < 2) { container = container.parentElement; }
+        const actionRowCandidates = Array.from(
+            mainScope.querySelectorAll('div.x78zum5.x1a02dak.x165d6jo.x1lxpwgx')
+        );
 
-        if (container && !document.querySelector(`.${CONFIG.FAKE_BUTTONS_CLASS}`)) {
-            container.style.display = 'none';
-            const wrapper = document.createElement('div');
-            wrapper.className = CONFIG.FAKE_BUTTONS_CLASS;
-            wrapper.innerHTML = FAKE_BUTTONS_HTML;
-            container.parentNode.insertBefore(wrapper, container.nextSibling);
+        const container = actionRowCandidates
+            .map((node) => {
+                const text = (node.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
+                const rect = node.getBoundingClientRect();
+                const h1Rect = h1Element?.getBoundingClientRect();
+
+                const hasProfileActionText =
+                    text.includes("add to story") ||
+                    text.includes("edit profile") ||
+                    text.includes("professional dashboard") ||
+                    text.includes("message") ||
+                    text.includes("follow") ||
+                    text.includes("add friend");
+
+                if (!hasProfileActionText) return null;
+
+                const distanceFromName = h1Rect ? Math.abs(rect.top - h1Rect.bottom) : rect.top;
+
+                return { node, distanceFromName };
+            })
+            .filter(Boolean)
+            .sort((a, b) => a.distanceFromName - b.distanceFromName)[0]?.node;
+
+        if (!container) return;
+
+        const profileType =
+            currentButtonMode === "auto"
+                ? (window.__pranksterProfileType?.type || detectProfileType().type)
+                : currentButtonMode;
+
+        const fakeButtonsHtml =
+            profileType === "professional"
+                ? FAKE_BUTTONS_HTML_PROFESSIONAL
+                : FAKE_BUTTONS_HTML_NORMAL;
+
+        const existingWrapper = document.querySelector(`.${CONFIG.FAKE_BUTTONS_CLASS}`);
+
+        if (existingWrapper) {
+            if (existingWrapper.dataset.pranksterButtonMode === profileType) return;
+            existingWrapper.remove();
         }
+
+        container.style.display = 'none';
+        const wrapper = document.createElement('div');
+        wrapper.className = CONFIG.FAKE_BUTTONS_CLASS;
+        wrapper.dataset.pranksterButtonMode = profileType;
+        wrapper.innerHTML = fakeButtonsHtml;
+        container.parentNode.insertBefore(wrapper, container.nextSibling);
+    }
+
+    function detectProfileType(root = document) {
+        const h1Element = root.querySelector("h1");
+        if (!h1Element) {
+            return { type: "unknown", hasFollowers: false, hasFollowing: false, hasFriends: false, sourceText: "" };
+        }
+
+        const mainScope = h1Element.closest('[role="main"]') || root;
+        const candidateNodes = Array.from(mainScope.querySelectorAll('span, a, div'));
+
+        const statNode = candidateNodes.find((node) => {
+            const text = (node.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
+            if (!text) return false;
+
+            const hasFollowers = /\bfollowers?\b/.test(text);
+            const hasFollowing = /\bfollowing\b/.test(text);
+            const hasFriends = /\bfriends?\b/.test(text);
+
+            return (hasFollowers && hasFollowing) || hasFriends;
+        });
+
+        const sourceText = (statNode?.textContent || "").replace(/\s+/g, " ").trim();
+        const normalizedText = sourceText.toLowerCase();
+
+        const hasFollowers = /\bfollowers?\b/.test(normalizedText);
+        const hasFollowing = /\bfollowing\b/.test(normalizedText);
+        const hasFriends = /\bfriends?\b/.test(normalizedText);
+
+        let type = "unknown";
+        if (hasFollowers && hasFollowing) {
+            type = "professional";
+        } else if (hasFriends) {
+            type = "normal";
+        }
+
+        return { type, hasFollowers, hasFollowing, hasFriends, sourceText };
+    }
+
+    function syncProfileTypeDetection() {
+        const profileType = detectProfileType();
+
+        document.documentElement.dataset.pranksterProfileType = profileType.type;
+        window.__pranksterProfileType = profileType;
+
+        if (lastDetectedProfileType !== profileType.type) {
+            lastDetectedProfileType = profileType.type;
+            console.log("Detected profile type:", profileType);
+        }
+
+        return profileType;
     }
 
     function injectCustomHeaderEditButtons() {
@@ -295,8 +394,8 @@
         // ==========================================
         // LOGIC A: NATIVE HIGHLIGHTS EXIST
         // ==========================================
-        
-    
+
+
         if (nativeHighlightsHeader) {
             if (fakeCard) fakeCard.remove();
 
@@ -309,17 +408,17 @@
 
             const btnWrapper = document.createElement("div");
             btnWrapper.className = "my-fake-highlights-btn-wrapper";
-            
+
             // 1. Remove the old 16px margin top and keep bottom padding
             btnWrapper.style.padding = "0px 16px 0px 16px";
             btnWrapper.style.width = "100%";
             btnWrapper.style.boxSizing = "border-box";
-            btnWrapper.style.marginTop = "0px"; 
+            btnWrapper.style.marginTop = "0px";
 
             // 2. Use Transform to force the button upward, bypassing margin restrictions.
             // Adjust the -8px to whatever looks best (e.g., -12px, -4px)
-            btnWrapper.style.transform = "translateY(-20px)"; 
-            
+            btnWrapper.style.transform = "translateY(-20px)";
+
             // To ensure it doesn't get clipped by the parent's overflow hidden, 
             // making it relative and bumping the z-index can help.
             btnWrapper.style.position = "relative";
@@ -575,6 +674,7 @@
         }
     }
     function runPranksterLogic() {
+        syncProfileTypeDetection();
         injectFakeMainButtons();
         makeIntroAndAboutEditable();
         injectCustomHeaderEditButtons();
@@ -788,8 +888,22 @@
     }
 
     chrome.storage.onChanged.addListener((changes, areaName) => {
-        if (areaName !== "local" || !changes[STORAGE_KEY]) return;
-        applyEnabledState(Boolean(changes[STORAGE_KEY].newValue));
+        if (areaName !== "local") return;
+
+        if (changes[BUTTON_MODE_KEY]) {
+            currentButtonMode = changes[BUTTON_MODE_KEY].newValue || "auto";
+            if (isPranksterRunning) {
+                runPranksterLogic();
+            }
+        }
+
+        if (changes[STORAGE_KEY]) {
+            applyEnabledState(Boolean(changes[STORAGE_KEY].newValue));
+        }
+    });
+
+    chrome.storage.local.get({ [BUTTON_MODE_KEY]: "auto" }, (result) => {
+        currentButtonMode = result[BUTTON_MODE_KEY] || "auto";
     });
 
     getStoredEnabledState((enabled) => {

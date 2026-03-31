@@ -591,12 +591,8 @@
     }
 
     function syncDropdownName() {
-        const h1Element = document.querySelector("h1");
-        if (!h1Element) return;
-
-        // Extract the name and strip out anything inside parentheses
-        const rawName = h1Element.textContent;
-        const newName = rawName.replace(/\s*\(.*\)\s*/, '').trim();
+        const newName = getCleanProfileName();
+        if (!newName) return;
 
         const activeMenu = document.querySelector('[role="menu"], [role="dialog"]');
         if (!activeMenu) return;
@@ -607,6 +603,19 @@
         if (targetNameSpan && targetNameSpan.textContent !== newName) {
             targetNameSpan.textContent = newName;
         }
+    }
+
+    function getCleanProfileName() {
+        const h1Element = document.querySelector("h1");
+        if (!h1Element) return "";
+
+        const rawName = h1Element.textContent || "";
+
+        return rawName
+            .replace(/\s*\(.*?\)\s*/g, " ")
+            .replace(/\bverified\s+(account|profile)\b/gi, "")
+            .replace(/\s+/g, " ")
+            .trim();
     }
 
     // ==========================================
@@ -639,12 +648,9 @@
     }
 
     function syncCommentIdentities() {
-        const h1Element = document.querySelector("h1");
-        if (!h1Element) return;
+        const ownerName = getCleanProfileName();
+        if (!ownerName) return;
 
-        // Extract the name and strip out anything inside parentheses
-        const rawName = h1Element.textContent;
-        const ownerName = rawName.replace(/\s*\(.*\)\s*/, '').trim();
         const targetLabel = `Comment as ${ownerName}`;
 
         const textboxes = document.querySelectorAll('div[aria-label^="Comment as "], div[aria-placeholder^="Comment as "]');

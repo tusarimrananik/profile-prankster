@@ -44,47 +44,7 @@
 
     // The full HTML row for Like, Comment, and Share
     const FAKE_ACTION_BAR_HTML = `
-    <div data-prankster-action-bar="true" class="x9f619 x1ja2u2z x78zum5 x2lah0s x1n2onr6 x1qughib x1qjc9v5 xozqiw3 x1q0g3np xyri2b x1c1uobl xjkvuk6 x1iorvi4 x11lt19s xe9ewy2 x4cne27 xifccgj">
-        <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x193iq5w xeuugli x1r8uery x1iyjqo2 xs83m0k x14vy60q xyiysdx x10b6aqq x1yrsyyn">
-            <div aria-label="Like" class="x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j xeuugli xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg x1ja2u2z x1t137rt x1fmog5m xu25z0z x140muxe xo1y3bh x3nfvp2 x1q0g3np x87ps6o x1lku1pv x1a2a7pz x5ve5x3" role="button" tabindex="0">
-                <div class="x9f619 x1ja2u2z x78zum5 x1n2onr6 x1r8uery x1iyjqo2 xs83m0k xeuugli xl56j7k x6s0dn4 xozqiw3 x1q0g3np xpdmqnj x1g0dm76 x18d9i69 xexx8yu x1lxpwgx x165d6jo x4cne27 xifccgj xn3w4p2 xuxw1ft">
-                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
-                        <span class="x3nfvp2"><i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style="background-image: url(&quot;https://z-p3-static.xx.fbcdn.net/rsrc.php/yd/r/Fv2SXGWpLpB.webp?_nc_eui2=AeHyJPpKVgvMqjhv0DD-R1XDb1SaOyNkmMxvVJo7I2SYzDom7ZT1HK30fr_Tk6xBIoFgE0sRs4SvSGMFqNIoQzZR&quot;); background-position: 0px -697px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i></span>
-                    </div>
-                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
-                        <span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xi81zsa" dir="auto"><span>Like</span></span>
-                    </div>
-                </div>
-                <div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="border-radius: 4px; inset: 0px;"></div>
-            </div>
-        </div>
-        <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x193iq5w xeuugli x1r8uery x1iyjqo2 xs83m0k x14vy60q xyiysdx x10b6aqq x1yrsyyn">
-            <div aria-label="Leave a comment" class="x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j xeuugli xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1fmog5m xu25z0z x140muxe xo1y3bh x3nfvp2 x1q0g3np x87ps6o x1lku1pv x1a2a7pz" role="button" tabindex="0">
-                <div class="x9f619 x1ja2u2z x78zum5 x1n2onr6 x1r8uery x1iyjqo2 xs83m0k xeuugli xl56j7k x6s0dn4 xozqiw3 x1q0g3np xpdmqnj x1g0dm76 x18d9i69 xexx8yu x1lxpwgx x165d6jo x4cne27 xifccgj xn3w4p2 xuxw1ft">
-                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
-                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" aria-hidden="true" style="background-image: url(&quot;https://z-p3-static.xx.fbcdn.net/rsrc.php/yd/r/Fv2SXGWpLpB.webp?_nc_eui2=AeHyJPpKVgvMqjhv0DD-R1XDb1SaOyNkmMxvVJo7I2SYzDom7ZT1HK30fr_Tk6xBIoFgE0sRs4SvSGMFqNIoQzZR&quot;); background-position: 0px -487px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
-                    </div>
-                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
-                        <span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xi81zsa" dir="auto">Comment</span>
-                    </div>
-                </div>
-                <div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="border-radius: 4px; inset: 0px;"></div>
-            </div>
-        </div>
-        <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x193iq5w xeuugli x1r8uery x1iyjqo2 xs83m0k x14vy60q xyiysdx x10b6aqq x1yrsyyn">
-            <div aria-label="Send this to friends or post it on your profile." class="x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j xeuugli xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1fmog5m xu25z0z x140muxe xo1y3bh x3nfvp2 x1q0g3np x87ps6o x1lku1pv x1a2a7pz" role="button" tabindex="0">
-                <div class="x9f619 x1ja2u2z x78zum5 x1n2onr6 x1r8uery x1iyjqo2 xs83m0k xeuugli xl56j7k x6s0dn4 xozqiw3 x1q0g3np xpdmqnj x1g0dm76 x18d9i69 xexx8yu x1lxpwgx x165d6jo x4cne27 xifccgj xn3w4p2 xuxw1ft">
-                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
-                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style="background-image: url(&quot;https://z-p3-static.xx.fbcdn.net/rsrc.php/yd/r/Fv2SXGWpLpB.webp?_nc_eui2=AeHyJPpKVgvMqjhv0DD-R1XDb1SaOyNkmMxvVJo7I2SYzDom7ZT1HK30fr_Tk6xBIoFgE0sRs4SvSGMFqNIoQzZR&quot;); background-position: 0px -844px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
-                    </div>
-                    <div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn">
-                        <span class="x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen x1s688f xi81zsa" dir="auto">Share</span>
-                    </div>
-                </div>
-                <div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore"></div>
-            </div>
-        </div>
-    </div>`;
+    <div data-prankster-action-bar="true"><div><div class="xn3w4p2 x1gslohp"><div class="x9f619 x1ja2u2z x78zum5 x2lah0s x1n2onr6 x1qughib x6s0dn4 xozqiw3 x1q0g3np x11lfxj5 x135b78x x18d9i69 xexx8yu x4cne27 xifccgj"><div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x10b6aqq x1yrsyyn"><div aria-label="Like" class="x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j xeuugli xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg x1ja2u2z x1t137rt x1fmog5m xu25z0z x140muxe xo1y3bh x3nfvp2 x1q0g3np x87ps6o x1lku1pv x1a2a7pz x5ve5x3" role="button" tabindex="0"><div class="x9f619 x1ja2u2z x2lah0s x1n2onr6 xl56j7k xozqiw3 x1q0g3np xpdmqnj x1g0dm76 x18d9i69 xexx8yu x1lxpwgx x165d6jo x4cne27 xifccgj x6s0dn4 x78zum5 xn3w4p2 xuxw1ft"><div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn"><span class="x3nfvp2"><i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/yd/r/Fv2SXGWpLpB.webp?_nc_eui2=AeF0mYQWBEI3iruQmPABjue3r_rM-2-GSAKv-sz7b4ZIAtFsztqyadHmM6dXCthB5nhU8Ifd4aDEMKsu0jsBTvh3&quot;); background-position: 0px -697px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i></span><div data-ad-rendering-role="like_button"></div></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore"></div></div><div aria-label="React" class="x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j xeuugli x16tdsg8 x1hl2dhg x1ja2u2z x1t137rt x1fmog5m xu25z0z x140muxe xo1y3bh x3nfvp2 x1q0g3np x87ps6o x1lku1pv x1a2a7pz x1f889gz x1d0ri9u x1ug4tga x1c1uobl xyri2b xnfr1j xzpqnlu x179tack x10l6tqk x5ve5x3" role="button" tabindex="0"><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" class="x14rh7hd x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" style="--x-color: var(--secondary-icon);"><path d="M4.708 6c-1.114 0-1.672 1.346-.884 2.134l2.939 2.94a1.75 1.75 0 0 0 2.475 0l2.94-2.94c.787-.788.229-2.134-.885-2.134H4.708z"></path></svg><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore"></div></div></div><div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x10b6aqq x1yrsyyn"><div aria-label="Leave a comment" class="x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j xeuugli xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1fmog5m xu25z0z x140muxe xo1y3bh x3nfvp2 x1q0g3np x87ps6o x1lku1pv x1a2a7pz" role="button" tabindex="0"><div class="x9f619 x1ja2u2z x2lah0s x1n2onr6 xl56j7k xozqiw3 x1q0g3np xpdmqnj x1g0dm76 x18d9i69 xexx8yu x1lxpwgx x165d6jo x4cne27 xifccgj x6s0dn4 x78zum5 xn3w4p2 xuxw1ft"><div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn"><i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" aria-hidden="true" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/yd/r/Fv2SXGWpLpB.webp?_nc_eui2=AeF0mYQWBEI3iruQmPABjue3r_rM-2-GSAKv-sz7b4ZIAtFsztqyadHmM6dXCthB5nhU8Ifd4aDEMKsu0jsBTvh3&quot;); background-position: 0px -487px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i><div data-ad-rendering-role="comment_button" class="html-div xdj266r x14z9mp xat24cr x1lziwak xexx8yu xyri2b x18d9i69 x1c1uobl"></div></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore" style="border-radius: 4px; inset: -8px 0px;"></div></div></div><div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x10b6aqq x1yrsyyn"><div aria-label="Send this to friends or post it on your profile." class="x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s x3ct3a4 xdj266r x14z9mp xat24cr x1lziwak x2lwn1j xeuugli xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1fmog5m xu25z0z x140muxe xo1y3bh x3nfvp2 x1q0g3np x87ps6o x1lku1pv x1a2a7pz" role="button" tabindex="0"><div class="x9f619 x1ja2u2z x2lah0s x1n2onr6 xl56j7k xozqiw3 x1q0g3np xpdmqnj x1g0dm76 x18d9i69 xexx8yu x1lxpwgx x165d6jo x4cne27 xifccgj x6s0dn4 x78zum5 xn3w4p2 xuxw1ft"><div class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w xeuugli x11lfxj5 x135b78x x10b6aqq x1yrsyyn"><i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/yd/r/Fv2SXGWpLpB.webp?_nc_eui2=AeF0mYQWBEI3iruQmPABjue3r_rM-2-GSAKv-sz7b4ZIAtFsztqyadHmM6dXCthB5nhU8Ifd4aDEMKsu0jsBTvh3&quot;); background-position: 0px -844px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i><div data-ad-rendering-role="share_button"></div></div></div><div class="x1ey2m1c xtijo5x x1o0tod xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h x1fmog5m xu25z0z x140muxe xo1y3bh" role="none" data-visualcompletion="ignore"></div></div></div><div class="x9f619 x1n2onr6 x1ja2u2z xdt5ytf x2lah0s x193iq5w xeuugli x10b6aqq x1yrsyyn x6s0dn4 x78zum5 xn3w4p2 xl56j7k xvc5jky xf159sx xmzvs34"></div></div></div></div></div>`;
 
     // ==========================================
     // MODULE 1: PROFILE PRANKSTER UI INJECTIONS
@@ -660,27 +620,47 @@
     // ==========================================
 
     function forceFullActionBars() {
-        const actionWrappers = document.querySelectorAll('.xbmvrgn.x1diwwjn');
+        const actionSections = document.querySelectorAll('.xn3w4p2.x1gslohp');
 
-        actionWrappers.forEach(wrapper => {
-            if (wrapper.querySelector('[data-prankster-action-bar="true"]')) return;
+        actionSections.forEach(section => {
+            if (section.closest('[data-prankster-action-bar="true"]')) return;
 
-            const textContent = wrapper.textContent || "";
-            const hasLike = textContent.includes("Like");
-            const hasComment = textContent.includes("Comment");
-            const hasShare = textContent.includes("Share");
+            const nativeBar = section.firstElementChild;
+            if (!(nativeBar instanceof HTMLElement)) return;
 
-            if (!hasLike || !hasComment || !hasShare) {
-                const nativeBar = wrapper.querySelector('.x9f619.x1ja2u2z.x78zum5.x2lah0s.x1n2onr6.x1qughib.x1qjc9v5.xozqiw3.x1q0g3np.xyri2b.x1c1uobl.xjkvuk6.x1iorvi4.x11lt19s.xe9ewy2.x4cne27.xifccgj');
+            const actionButtons = nativeBar.querySelector(
+                '[aria-label="Like"][role="button"], [aria-label="Leave a comment"][role="button"], [aria-label="Send this to friends or post it on your profile."][role="button"], [aria-label="React"][role="button"]'
+            );
+            if (!actionButtons) return;
 
-                if (nativeBar) {
-                    nativeBar.style.display = 'none';
+            const hasLike = !!nativeBar.querySelector('[aria-label="Like"][role="button"]');
+            const hasComment = !!nativeBar.querySelector('[aria-label="Leave a comment"][role="button"]');
+            const hasShare = !!nativeBar.querySelector('[aria-label="Send this to friends or post it on your profile."][role="button"]');
 
-                    const fakeContainer = document.createElement('div');
-                    fakeContainer.innerHTML = FAKE_ACTION_BAR_HTML;
-                    wrapper.appendChild(fakeContainer.firstElementChild);
+            if (hasLike && hasComment && hasShare) return;
+
+            const reactionSummaryRow = Array.from(nativeBar.children).find(child =>
+                child instanceof HTMLElement &&
+                child.querySelector('span[aria-label="See who reacted to this"][role="toolbar"]')
+            );
+
+            const fakeContainer = document.createElement('div');
+            fakeContainer.innerHTML = FAKE_ACTION_BAR_HTML.trim();
+
+            const fakeWrapper = fakeContainer.firstElementChild;
+            const fakeBar = fakeWrapper?.querySelector('.xn3w4p2.x1gslohp > div');
+            if (!(fakeWrapper instanceof HTMLElement) || !(fakeBar instanceof HTMLElement)) return;
+
+            if (reactionSummaryRow) {
+                const spacer = fakeBar.lastElementChild;
+                if (spacer instanceof HTMLElement) {
+                    spacer.replaceWith(reactionSummaryRow);
+                } else {
+                    fakeBar.appendChild(reactionSummaryRow);
                 }
             }
+
+            section.replaceWith(fakeWrapper);
         });
     }
 
